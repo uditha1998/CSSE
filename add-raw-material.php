@@ -7,7 +7,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
 
     <head>
-        <title>Lava Material - Web Application and Website Multipurpose Admin Panel Template</title>
+        <title>Construction-Raw Material</title>
         <!--== META TAGS ==-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,6 +25,8 @@ include_once(dirname(__FILE__) . '/auth.php');
         <link rel="stylesheet" href="css/mob.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/materialize.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     </head>
 
@@ -98,13 +100,13 @@ include_once(dirname(__FILE__) . '/auth.php');
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add Listing</a>
+                        <li class="active-bre"><a href="#"> Add New Raw Material Records</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="sb2-2-add-blog sb2-2-1">
-                    <h2>Add New Purchase Order</h2>
+                    <h2>Add New Raw Material</h2>
 
 
 
@@ -112,53 +114,59 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div id="home" class="tab-pane fade in active">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Purchase Information</h4>
+                                    <h4>Raw Material Record Information(Stock Records)</h4>
                                 </div>
                                 <div class="bor">
-                                    <form>
-                                           
-                         
-                                       
+                                    <form method="post" id="form-data" enctype="multipart/form-data">
+
+
+
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select>
-                                                    <option value="" disabled selected>Choose item</option>
-                                                    <option value="1">Cement</option>
-                                                    <option value="2">Iron bars</option>
-                                                    <option value="3">Sand</option>
-                                                    <option value="3">Plumbing</option>
-                                                    <option value="3">Tiles</option>
-                                                    <option value="3">Putty</option>
-                                                   
-                                                </select>
-                                                <label>Select Item</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <select >
-                                                    <option value="" disabled selected>Choose supplier</option>
-                                                    <option value="1">Thennakon Traders</option>
-                                                    <option value="2">UKG Hardware</option>
-                                                    <option value="3">PVC </option>
-                                                    
+                                                <select  name="name" id="name">
+                                                    <option value="" disabled selected>Choose Item</option>
+
+                                                    <?php
+                                                    $MATERIAL=new Material();
+                                                    foreach ($MATERIAL->getMaterialName() as $material_name) {
+                                                        
+                                                        ?>
+                                                        <option value = <?= $material_name['Name'] ?> > <?= $material_name['Name'] ?>  </option>
+                                                  <?php
+                                                    }
+                                                    ?>
+
                                                 </select>
                                                 <label>Select Seller</label>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input id="first_name" type="text" >
-                                                <label for="first_name">Price </label>
+                                            <div class = "input-field col s6">
+                                                <select name = "seller" id = "seller">
+                                                    <option value = "" disabled selected>Choose supplier</option>
+                                                    <option value = "1">Thennakon Traders</option>
+                                                    <option value = "2">UKG Hardware</option>
+                                                    <option value = "3">PVC </option>
+
+                                                </select>
+                                                <label>Select Seller</label>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input id="last_name" type="text" >
-                                                <label for="last_name">Quantity</label>
+                                            <div class = "input-field col s6">
+                                                <input id = "price" name = "price" type = "text" >
+                                                <label for = "price">Price </label>
                                             </div>
-                                             <div class="input-field col s6">
-                                                 <textarea id="description" type="text" "></textarea>
-                                                <label for="last_name">Description</label>
+                                            <div class = "input-field col s6">
+                                                <input id = "quantity" name = "quantity" type = "text" >
+                                                <label for = "quantity">Quantity</label>
                                             </div>
+                                            <!--<div class = "input-field col s12">
+                                            <textarea id = "description" type = "text" "></textarea>
+                                                                                    <label for="last_name">Description</label>
+                                                                                </div>-->
                                         </div>
+                                        <input name="action" value="create" type="hidden" >
+
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input type="submit" class="waves-effect waves-light btn-large" value="Submit">
+                                                <button type="submit" id="create" class="waves-effect waves-light btn-large" name="create">Create</button>
                                             </div>
                                         </div>
                                     </form>
@@ -196,6 +204,11 @@ include_once(dirname(__FILE__) . '/auth.php');
     <script src="js/bootstrap.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src = "js/ajax/material.js" type = "text/javascript"></script>
+     
+
 </body>
 
 

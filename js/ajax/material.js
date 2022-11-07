@@ -1,14 +1,12 @@
 $(document).ready(function () {
 
-
-
-    //Create attraction
+  //Create attraction
 
     $("#create").click(function (event) {
 
         event.preventDefault();
 
-        tinymce.triggerSave();
+//        tinymce.triggerSave();
 
 
 
@@ -18,7 +16,7 @@ $(document).ready(function () {
 
                 title: "Error!",
 
-                text: "Please enter title..!",
+                text: "Please enter Item Name..!",
 
                 type: 'error',
 
@@ -28,13 +26,13 @@ $(document).ready(function () {
 
             });
 
-        } else if (!$('#image').val() || $('#image').val().length === 0) {
+        } else if (!$('#quantity').val() || $('#quantity').val().length === 0) {
 
             swal({
 
                 title: "Error!",
 
-                text: "Please enter  image..!",
+                text: "Please enter  Quantity..!",
 
                 type: 'error',
 
@@ -44,7 +42,39 @@ $(document).ready(function () {
 
             });
 
-        } else if ($('#title').val().includes("'")) {
+        } else if (!$('#price').val() || $('#price').val().length === 0) {
+
+            swal({
+
+                title: "Error!",
+
+                text: "Please enter  Price..!",
+
+                type: 'error',
+
+                timer: 1500,
+
+                showConfirmButton: false
+
+            });
+
+        } else if (!$('#seller').val() || $('#seller').val().length === 0) {
+
+            swal({
+
+                title: "Error!",
+
+                text: "Please enter  the Seller ..!",
+
+                type: 'error',
+
+                timer: 1500,
+
+                showConfirmButton: false
+
+            });
+
+        } else if ($('#seller').val().includes("'")) {
 
             swal({
 
@@ -60,7 +90,7 @@ $(document).ready(function () {
 
             });
 
-        } else if ($('#description').val().includes("'")) {
+        } else if ($('#quantity').val().includes("'")) {
 
             swal({
 
@@ -94,7 +124,7 @@ $(document).ready(function () {
             });
             $.ajax({
 
-                url: "controller/project.php",
+                url: "controller/material.php",
 
                 type: "POST",
 
@@ -166,7 +196,7 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        tinymce.triggerSave();
+    //        tinymce.triggerSave();
 
 
 
@@ -271,7 +301,7 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        tinymce.triggerSave();
+//        tinymce.triggerSave();
 
 
 
@@ -365,7 +395,7 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        tinymce.triggerSave();
+//        tinymce.triggerSave();
 
         window.swal({
 

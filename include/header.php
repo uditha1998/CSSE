@@ -22,7 +22,7 @@
                             <ul>
                                 <li><a href="./add-purchase-order.php">Create</a>
                                 </li>
-                                <li><a href="./manage-purchase-order">View</a>
+                                <li><a href="./manage-purchase-order.php">View</a>
                                 </li>
 
                                 </li>
@@ -68,9 +68,9 @@
                         <div class="collapsible-body left-sub-menu">
                             <ul>
                                 </li>
-                                <li><a href="./add-raw-material.php">Creat Site</a> </li>
+                                <li><a href="./add-raw-material.php">Create </a> </li>
 
-                                <li><a href="./manage-raw-material.php">Manage Site</a> </li>
+                                <li><a href="./manage-raw-material.php">Manage </a> </li>
 
                             </ul>
                         </div>
