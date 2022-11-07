@@ -1,0 +1,1 @@
+<?phpif (!isset($_SESSION)) {    session_start();} $USER= NEW User();$result=$USER->authenticate();if (!$result) {    redirect('login.php'); }
