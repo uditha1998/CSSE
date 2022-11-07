@@ -6,6 +6,7 @@ class Site extends DBconnection {
 
     private $id;
     private $location;
+    private $manager;
 
     public function __construct() {
         parent::__construct();
@@ -16,9 +17,10 @@ class Site extends DBconnection {
         date_default_timezone_set('Asia/Colombo');
         $this->createdAt = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO `site` (location) VALUES  ("
-                . "'"
-                . $this->location . "')";
+
+        $sql = "INSERT INTO `site` (location, manager) VALUES  ("
+                . "'" . $this->location . "', '"
+                . $this->manager . "')";
 
         if (mysqli_query($this->connection, $sql)) {
 
@@ -31,7 +33,8 @@ class Site extends DBconnection {
     public function update() {
 
         $sql = "UPDATE  `site` SET "
-                . "`name` ='" . $this->name . "', "
+                . "`location` ='" . $this->location . "', "
+                . "`manager` ='" . $this->manager . "'  "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $query = mysqli_query($this->connection, $sql);
@@ -78,10 +81,17 @@ class Site extends DBconnection {
 
             $result = $query->fetch_assoc();
 
-            $this->name = $result['name'];
+            $this->location = $result['location'];
+            $this->manager = $result['manager'];
+
 
             return $result;
         }
+    }
+
+    public function setSite($location, $manager) {
+        $this->location = $location;
+        $this->manager = $manager;
     }
 
 }

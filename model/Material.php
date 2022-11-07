@@ -6,6 +6,7 @@ class Material extends DBconnection {
 
     private $id;
     private $name;
+    private $seller;
     private $unitPrice;
     private $quantity;
 
@@ -13,14 +14,28 @@ class Material extends DBconnection {
         parent::__construct();
     }
 
+    public function getMaterialName(){
+          $sql = "SELECT * FROM `material_name` ";
+
+        $query = mysqli_query($this->connection, $sql);
+
+        $array_res = array();
+        while ($row = $query->fetch_assoc()) {
+
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
     public function create() {
 
         date_default_timezone_set('Asia/Colombo');
         $this->createdAt = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO `material` (name, unitPrice,quantity) VALUES  ("
+        $sql = "INSERT INTO `material` (name, unitPrice,seller,quantity) VALUES  ("
                 . "'" . $this->name . "', '"
                 . $this->unitPrice . "', '"
+                . $this->seller . "', '"
                 . $this->quantity . "')";
 
         if (mysqli_query($this->connection, $sql)) {
@@ -36,6 +51,7 @@ class Material extends DBconnection {
         $sql = "UPDATE  `purchase_order` SET "
                 . "`name` ='" . $this->name . "', "
                 . "`unitPrice` ='" . $this->unitPrice . "', "
+                . "`seller` ='" . $this->seller . "', "
                 . "`quantity` ='" . $this->quantity . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
@@ -85,11 +101,19 @@ class Material extends DBconnection {
 
             $this->name = $result['name'];
             $this->unitPrice = $result['unitPrice'];
+            $this->seller = $result['seller'];
             $this->quantity = $result['quantity'];
-         
+
 
             return $result;
         }
+    }
+
+    public function setAll($name, $seller, $price, $quantity) {
+        $this->name = $name;
+        $this->seller = $seller;
+        $this->unitPrice = $price;
+        $this->quantity = $quantity;
     }
 
 }
