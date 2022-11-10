@@ -43,16 +43,8 @@ class PurchaseOrder extends DBconnection {
 
     public function update() {
 
-        $sql = "UPDATE  `purchase_order` SET "
-                . "`description` ='" . $this->description . "', "
-                . "`item` ='" . $this->item . "', "
-                . "`price` ='" . $this->price . "', "
-                . "`quantity` ='" . $this->quantity . "', "
-                . "`supplier` ='" . $this->supplier . "', "
-                . "`staff` ='" . $this->staff . "', "
-                . "`status` ='" . $this->status . "', "
-                . "`createdAt` ='" . $this->createdAt . "' "
-                . "WHERE `id` = '" . $this->id . "'";
+        $sql = "UPDATE `purchase_order` SET `status` ='" . $this->status . "' WHERE `id`='" . $this->id . "'";
+
 
         $query = mysqli_query($this->connection, $sql);
 
@@ -101,7 +93,7 @@ class PurchaseOrder extends DBconnection {
             $this->description = $result['description'];
             $this->item = $result['item'];
             $this->price = $result['price'];
-            $this->quantity = $result['quantity'];
+            $this->quantity = $result['quantitty'];
             $this->staff = $result['staff'];
             $this->supplier = $result['supplier'];
             $this->status = $result['status'];
@@ -109,6 +101,29 @@ class PurchaseOrder extends DBconnection {
 
             return $result;
         }
+    }
+
+    public function getAll() {
+
+
+
+        $sql = "SELECT * FROM `purchase_order` ";
+
+        $query = mysqli_query($this->connection, $sql);
+
+        $array_res = array();
+        while ($row = $query->fetch_assoc()) {
+
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
+    public function setId($id) {
+        $this->id=$id;
+    }
+     public function setStatus($status) {
+        $this->status=$status;
     }
 
 }
