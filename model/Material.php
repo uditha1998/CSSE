@@ -14,8 +14,8 @@ class Material extends DBconnection {
         parent::__construct();
     }
 
-    public function getMaterialName(){
-          $sql = "SELECT * FROM `material_name` ";
+    public function getMaterialName() {
+        $sql = "SELECT * FROM `material_name` ";
 
         $query = mysqli_query($this->connection, $sql);
 
@@ -104,9 +104,20 @@ class Material extends DBconnection {
             $this->seller = $result['seller'];
             $this->quantity = $result['quantity'];
 
-
             return $result;
         }
+    }
+
+    public function getName($id) {
+
+
+            $sql = "SELECT name FROM `material_name`  WHERE `itemCode`='" . $id . "'";
+
+            $query = mysqli_query($this->connection, $sql);
+
+           $result = $query->fetch_assoc()  ;
+
+            return $result['name'];
     }
 
     public function setAll($name, $seller, $price, $quantity) {

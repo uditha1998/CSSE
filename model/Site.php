@@ -17,7 +17,6 @@ class Site extends DBconnection {
         date_default_timezone_set('Asia/Colombo');
         $this->createdAt = date('Y-m-d H:i:s');
 
-
         $sql = "INSERT INTO `site` (location, manager) VALUES  ("
                 . "'" . $this->location . "', '"
                 . $this->manager . "')";
@@ -84,9 +83,21 @@ class Site extends DBconnection {
             $this->location = $result['location'];
             $this->manager = $result['manager'];
 
-
             return $result;
         }
+    }
+
+    public function getName($id) {
+
+
+            $sql = "SELECT * FROM `site` WHERE `id`=" . $id;
+
+            $query = mysqli_query($this->connection, $sql);
+
+            $result = $query->fetch_assoc();
+
+            return $result['location'];
+        
     }
 
     public function setSite($location, $manager) {

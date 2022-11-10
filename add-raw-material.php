@@ -123,7 +123,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select  name="name" id="name">
+                                                <select  name="title" id="title">
                                                     <option value="" disabled selected>Choose Item</option>
 
                                                     <?php
