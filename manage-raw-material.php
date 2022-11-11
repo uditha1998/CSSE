@@ -120,8 +120,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                             <div class="col-md-12">
                                 <div class="box-inn-sp">
                                     <div class="inn-title">
-                                        <h4>Manage Raw Material</h4>
-                                        <p>Here are raw materials Available in Sites</p>
+                                        <h4>Manage Delivery Log </h4>
+                                        <p>Here is the delivery log in All Sites</p>
                                         <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                         <ul id="dr-users" class="dropdown-content">
                                             <li><a href="#!">Add New</a>
