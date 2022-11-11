@@ -100,13 +100,13 @@ include_once(dirname(__FILE__) . '/auth.php');
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add New Raw Material Records</a>
+                            <li class="active-bre"><a href="#"> Add New Delivery Log</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="sb2-2-add-blog sb2-2-1">
-                    <h2>Add New Raw Material</h2>
+                    <h2>Add New Delivery Log</h2>
 
 
 
@@ -114,7 +114,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div id="home" class="tab-pane fade in active">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Raw Material Record Information(Stock Records)</h4>
+                                    <h4>Delivery Log Record Information(Stock Records)</h4>
                                 </div>
                                 <div class="bor">
                                     <form method="post" id="form-data" enctype="multipart/form-data">

@@ -1,0 +1,1 @@
+<?phpinclude_once(dirname(__FILE__) . '/model/include.php');$USER = new User(NULL);if ($USER->logOut()) {    redirect('login.php'); } 

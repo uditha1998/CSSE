@@ -1,3 +1,6 @@
+<?php
+include_once(dirname(__FILE__) . '/model/include.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,10 +48,17 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <select id="type">
+                                
                                 <option value="" disabled selected>Choose Login Type</option>
-                                <option value="1">Supplier</option>
-                                <option value="2">Manager</option>
-
+                                <?php
+                                $MANAGER=new User();
+                                foreach ($MANAGER->getAllMAnagerType() as $manager){
+                                ?>
+                                <option value="<?=$manager['id']?>"><?=$manager['name']?></option>
+                                <?php 
+                                
+                                } 
+                                ?>
                             </select>
                             <label>Select User Type</label>
                         </div>
